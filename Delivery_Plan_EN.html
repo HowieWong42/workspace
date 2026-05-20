@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-First Contact Center & Telesales Platform — Delivery Plan</title>
+<style>
+  :root{
+    --navy:#16314f; --navy2:#1f4368; --steel:#2e6da4; --accent:#c8a45c;
+    --ink:#1f2933; --muted:#5b6770; --line:#d8dee5; --bg:#f4f6f9;
+    --soft:#eef2f6; --good:#1f7a4d; --warn:#9a6a00;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; font-size:15px;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px 80px;}
+  header.doc{
+    background:linear-gradient(135deg,var(--navy),var(--navy2));
+    color:#fff; padding:46px 0 36px; margin-bottom:34px;
+  }
+  header.doc .wrap{padding-top:0;}
+  header.doc .kicker{letter-spacing:.18em; text-transform:uppercase; font-size:12px; color:var(--accent); font-weight:600;}
+  header.doc h1{margin:10px 0 6px; font-size:30px; font-weight:700; line-height:1.2;}
+  header.doc .sub{color:#cfdcea; font-size:15px;}
+  .meta{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+    background:#fff; border:1px solid var(--line); border-radius:10px;
+    overflow:hidden; margin:26px 0 30px;
+  }
+  .meta div{padding:13px 18px; border-right:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .meta div:nth-child(3n){border-right:none;}
+  .meta .k{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted);}
+  .meta .v{font-weight:600; font-size:14px; margin-top:2px;}
+  .callout{
+    background:var(--soft); border-left:4px solid var(--steel);
+    padding:14px 18px; border-radius:0 8px 8px 0; margin:18px 0; font-size:14px; color:#33414c;
+  }
+  .callout.gold{border-left-color:var(--accent);}
+  .callout em{color:var(--navy); font-style:italic;}
+  h2{
+    font-size:21px; margin:42px 0 14px; padding-bottom:9px;
+    border-bottom:2px solid var(--navy); color:var(--navy);
+  }
+  h2 .num{
+    display:inline-block; background:var(--navy); color:#fff; font-size:14px;
+    width:30px; height:30px; line-height:30px; text-align:center; border-radius:6px; margin-right:10px;
+  }
+  h3{font-size:16px; margin:26px 0 10px; color:var(--navy2);}
+  p{margin:10px 0;}
+  ul{margin:10px 0 10px 4px; padding-left:20px;}
+  li{margin:5px 0;}
+  table{
+    width:100%; border-collapse:collapse; margin:16px 0; font-size:13.5px;
+    background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden;
+  }
+  thead th{
+    background:var(--navy); color:#fff; text-align:left; padding:10px 12px; font-weight:600; font-size:12.5px;
+  }
+  tbody td{padding:9px 12px; border-top:1px solid var(--line); vertical-align:top;}
+  tbody tr:nth-child(even){background:#fafbfc;}
+  .tableScroll{overflow-x:auto; -webkit-overflow-scrolling:touch;}
+  .tableScroll table{min-width:880px;}
+  td.r,th.r{text-align:center; white-space:nowrap;}
+  .tot td{background:var(--soft)!important; font-weight:700;}
+  .pill{display:inline-block; padding:2px 9px; border-radius:20px; font-size:11.5px; font-weight:600;}
+  .pill.must{background:#fde9e0; color:#9a3b13;}
+  .pill.mid{background:#e7eff7; color:#1f4368;}
+  .kpis{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:18px 0;}
+  .kpi{background:#fff; border:1px solid var(--line); border-radius:10px; padding:16px 18px;}
+  .kpi .lab{font-size:11.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted);}
+  .kpi .val{font-size:19px; font-weight:700; color:var(--navy); margin-top:4px;}
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .internal{
+    background:#fff7e9; border:1px dashed var(--warn); border-radius:10px; padding:6px 22px 22px; margin-top:30px;
+  }
+  .internal .tag{
+    display:inline-block; background:var(--warn); color:#fff; font-size:11px; font-weight:700;
+    padding:3px 12px; border-radius:0 0 8px 8px; letter-spacing:.05em;
+  }
+  .ph{font-weight:600;}
+  .ph small{display:block; color:var(--muted); font-weight:400; font-size:11px;}
+  footer{margin-top:50px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:12.5px;}
+  @media(max-width:760px){
+    .meta,.kpis,.two{grid-template-columns:1fr;}
+    .meta div{border-right:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="doc">
+  <div class="wrap">
+    <div class="kicker">Alinma Bank · RFP #743305</div>
+    <h1>AI-First Contact Center &amp; Telesales Platform</h1>
+    <div class="sub">Delivery Plan · Version v1 · 19 May 2026</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="meta">
+    <div><div class="k">Project</div><div class="v">AI-First Contact Center &amp; Telesales Platform</div></div>
+    <div><div class="k">RFP</div><div class="v">#743305 (V1.3, 14 May 2026)</div></div>
+    <div><div class="k">Client</div><div class="v">Alinma Bank</div></div>
+    <div><div class="k">Software Provider</div><div class="v">[Vendor name]</div></div>
+    <div><div class="k">Local Implementation Partner</div><div class="v">[KSA SI name]</div></div>
+    <div><div class="k">Document Version</div><div class="v">v1</div></div>
+  </div>
+
+  <div class="callout">
+    This document responds to the RFP §14 Delivery Plan requirement:
+    <em>“Detailed plan, resources, assumptions, dependencies, and work split including data and EDW tasks.”</em>
+    The other mandatory deliverables (compliance, architecture, hardware, detailed requirement response, commercials, references) are submitted as separate documents.
+    <br><br>
+    <strong>This version supports the bid.</strong> After award, the plan will be iterated during detailed design; the scope, assumptions and UAT Bot design described here are guiding frameworks, to be confirmed jointly with the Bank during detailed design.
+  </div>
+
+  <!-- 1 -->
+  <h2><span class="num">1</span>Project Overview</h2>
+  <p>The project designs, implements, integrates, tests, deploys and supports a GenAI platform for Alinma Bank that combines three coordinated capabilities:</p>
+  <ul>
+    <li><strong>M1</strong> — AI Outbound Telesales</li>
+    <li><strong>M2</strong> — AI Follow-up for Digital Leads</li>
+    <li><strong>M3</strong> — AI-First Inbound Contact Center (Phase 1 inquiry, Phase 2 complaints)</li>
+  </ul>
+  <p>Total delivery duration is <strong>5 months</strong>. All AI workloads and customer interactions run on bank-controlled on-premises infrastructure within KSA.</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="lab">Monthly Call Volume</div><div class="val">70K → 140K</div></div>
+    <div class="kpi"><div class="lab">Concurrency Baseline</div><div class="val">200 AI voice sessions</div></div>
+    <div class="kpi"><div class="lab">Languages</div><div class="val">Arabic (primary) + English</div></div>
+    <div class="kpi"><div class="lab">Deployment</div><div class="val">On-prem / private cloud, KSA</div></div>
+    <div class="kpi"><div class="lab">Compliance</div><div class="val">SAMA / PDPL / NCA</div></div>
+    <div class="kpi"><div class="lab">Duration</div><div class="val">5 months (22 weeks)</div></div>
+  </div>
+
+  <!-- 2 -->
+  <h2><span class="num">2</span>Scope of Delivery</h2>
+
+  <h3>2.1 Our Core Deliverables (within 5 months)</h3>
+  <ul>
+    <li><strong>Full platform software stack</strong>: AgentStudio (low-code agent builder + LLM inference engine), Voice SaaS, ASR / TTS (Arabic + English), RAG pipeline + knowledge base management, change-governance capability, integration consumer-side code, data contracts + EDW push.</li>
+    <li><strong>Three UAT Bots</strong> (one each for M1 / M2 / M3 Phase 1): end-to-end, production-ready, serving as the skeleton version of the full bots (see 2.2).</li>
+    <li><strong>Training</strong> for 4 audiences (see §9.1).</li>
+    <li><strong>Hypercare</strong>: post-go-live extended support.</li>
+  </ul>
+  <div class="callout gold">
+    <strong>Change-governance capability:</strong> changes to bot-configurable items (dialog flow, prompts, knowledge content, model selection, etc.) are managed through diff review + maker-checker dual approval + version control + rollback + audit logging. The detailed governance scheme (approval levels, coverage) is confirmed with the Bank during implementation.
+  </div>
+
+  <h3>2.2 UAT Bot Approach</h3>
+  <p>We deliver the platform tools plus 3 UAT Bots (one each for M1 / M2 / M3 Phase 1). Each bot completes an end-to-end flow over a minimal integration footprint (ESB + key business services + IVR/SIP + ASR/TTS/LLM + knowledge base + human handover), serving both as end-to-end acceptance evidence and as the initial version of the production bot. Each UAT Bot is designed jointly with the business unit in P2, covering three dimensions: business scenario, integration targets (T24/CRM/Comarch), and Identity &amp; Verification (ID&amp;V).</p>
+  <p><strong>ID&amp;V (Identity &amp; Verification)</strong> is a critical step in the voice channel. Per RFP INT-27, authentication logic is provided by the Bank’s integration-layer services; the AI agent does not implement its own authentication. During implementation we will conduct targeted discovery and design of the inbound / outbound authentication logic, based on the Bank’s existing ID&amp;V capabilities and intentions.</p>
+
+  <p><strong>UAT Bot coverage (mapped to RFP §12 UAT requirements)</strong> — the UAT scenarios required by RFP §12 are carried directly by the three UAT Bots:</p>
+  <table>
+    <thead><tr><th>RFP §12 UAT coverage item</th><th>Carried by</th></tr></thead>
+    <tbody>
+      <tr><td>Core sales journeys</td><td>M1 Personal Finance UAT Bot</td></tr>
+      <tr><td>Inbound inquiry handling</td><td>M3 Phase 1 Inquiry UAT Bot</td></tr>
+      <tr><td>Complaint handling</td><td>M3 Phase 2 (detailed design &amp; preparation in this cycle)</td></tr>
+      <tr><td>Transfer scenarios</td><td>Human-handover path of all 3 UAT Bots</td></tr>
+      <tr><td>Callback scheduling</td><td>M1 / M2 UAT Bots</td></tr>
+      <tr><td>CRM / T24 updates</td><td>Integration of all 3 UAT Bots</td></tr>
+      <tr><td>Authentication logic</td><td>ID&amp;V (all 3 UAT Bots)</td></tr>
+      <tr><td>Disclosure handling</td><td>M1 / M2 sales journeys</td></tr>
+      <tr><td>Arabic / English quality</td><td>All 3 UAT Bots (bilingual)</td></tr>
+      <tr><td>Audit logging</td><td>Platform capability (not bot-specific)</td></tr>
+    </tbody>
+  </table>
+  <p>This coverage drives the dialog design, integration, build, testing and acceptance effort of the UAT Bots (see §6 and the resource appendix).</p>
+
+  <h3>2.3 Extension Model (to be confirmed after kick-off)</h3>
+  <ul>
+    <li>Each module may extend to 2–3 UAT Bots (scope extension subject to schedule impact assessment).</li>
+    <li>Full bots for M1 / M2 (all product lines) and M3 Phase 2 are built by Alinma on our platform; we provide the platform, methodology, training and Hypercare-period support.</li>
+    <li>The long-term collaboration model is discussed separately later.</li>
+  </ul>
+
+  <h3>2.4 Three-Party Responsibility Overview</h3>
+  <div class="tableScroll">
+  <table>
+    <thead><tr><th>Responsibility area</th><th class="r">Alinma Bank</th><th class="r">Software Provider</th><th class="r">Local SI</th></tr></thead>
+    <tbody>
+      <tr><td>Infrastructure + ESB integration layer + coarse-grained business services (provider side)</td><td class="r">●</td><td class="r"></td><td class="r"></td></tr>
+      <tr><td>Integration (consumer-side code)</td><td class="r">C</td><td class="r">●</td><td class="r"></td></tr>
+      <tr><td>Business rules / complaint taxonomy / knowledge content</td><td class="r">●</td><td class="r">C</td><td class="r"></td></tr>
+      <tr><td>EDW ETL &amp; reporting</td><td class="r">●</td><td class="r">(data contracts + push)</td><td class="r"></td></tr>
+      <tr><td>AI platform software &amp; models</td><td class="r"></td><td class="r">●</td><td class="r"></td></tr>
+      <tr><td>3 UAT Bots build</td><td class="r">C (business input)</td><td class="r">●</td><td class="r"></td></tr>
+      <tr><td>UAT acceptance</td><td class="r">● (execute + sign-off)</td><td class="r">C</td><td class="r"></td></tr>
+      <tr><td>Training + handover + Hypercare (software side)</td><td class="r">C</td><td class="r">●</td><td class="r"></td></tr>
+      <tr><td>Hardware + local implementation + 24×7 on-site</td><td class="r"></td><td class="r"></td><td class="r">●</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Detailed RACI in §5.</p>
+
+  <!-- 3 -->
+  <h2><span class="num">3</span>Implementation Plan</h2>
+
+  <h3>3.1 Overview: 5 months / 22 weeks / 6 phases</h3>
+  <div class="tableScroll">
+  <table>
+    <thead><tr><th>Phase</th><th>Weeks</th><th>Dates</th><th>Theme</th></tr></thead>
+    <tbody>
+      <tr><td><strong>P1</strong> Kick-off + Discovery</td><td>W1–W4</td><td>02 Aug – 27 Aug 2026</td><td>Kick-off, current-state discovery, Discovery questionnaire</td></tr>
+      <tr><td><strong>P2</strong> Detailed Design</td><td>W5–W8</td><td>30 Aug – 24 Sep 2026</td><td>Architecture, dialog &amp; bot design, integration design</td></tr>
+      <tr><td><strong>P3</strong> Infrastructure + Platform Deployment + Integration</td><td>W9–W14</td><td>27 Sep – 05 Nov 2026</td><td>Hardware ready, platform deployment, integration dev, knowledge ingestion</td></tr>
+      <tr><td><strong>P4</strong> Platform Testing + UAT Prep</td><td>W15–W17</td><td>08 Nov – 26 Nov 2026</td><td>Platform testing, performance &amp; language evaluation, UAT prep</td></tr>
+      <tr><td><strong>P5</strong> UAT Bot Build + Acceptance + Training</td><td>W18–W20</td><td>29 Nov – 17 Dec 2026</td><td>End-to-end build &amp; acceptance of 3 UAT Bots, team training</td></tr>
+      <tr><td><strong>P6</strong> Go-live + Hypercare Start</td><td>W21–W22</td><td>20 Dec – 31 Dec 2026</td><td>Go-live, documentation handover, knowledge transfer, Hypercare start</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout">Start date assumes 02 Aug 2026. Saudi working week: Sunday–Thursday; the 22-week schedule does not overlap Ramadan 2027. A different start date shifts the whole timeline.</div>
+
+  <h3>3.2 Key Deliverables by Phase</h3>
+  <table>
+    <thead><tr><th>Phase</th><th>Key deliverables</th></tr></thead>
+    <tbody>
+      <tr><td>P1</td><td>Current-state discovery report, Discovery inputs compilation, Arabic language baseline evaluation</td></tr>
+      <tr><td>P2</td><td>Solution &amp; architecture design, integration design, business design of 3 UAT Bots</td></tr>
+      <tr><td>P3</td><td>Platform deployment ready, integration development complete, knowledge base initial readiness</td></tr>
+      <tr><td>P4</td><td>Platform test report (incl. performance &amp; language evaluation), UAT readiness</td></tr>
+      <tr><td>P5</td><td>End-to-end build &amp; acceptance of 3 UAT Bots, team training complete</td></tr>
+      <tr><td>P6</td><td>Go-live, operations &amp; handover documentation, knowledge transfer, Hypercare start</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.3 Implementation Notes &amp; Coordination Requests</h3>
+  <ul>
+    <li><strong>M3 Phase 2 (complaints)</strong> completes detailed design and go-live preparation within this cycle; full go-live timing is agreed in a later phase.</li>
+    <li>To keep the schedule controllable, we ask the Bank to jointly confirm at kick-off: the <strong>acceptance method and sign-off party for each phase</strong>, the <strong>cadence and typical duration of compliance / security / architecture reviews</strong>, and the acceptance criteria. We will align milestones accordingly.</li>
+  </ul>
+
+  <!-- 4 -->
+  <h2><span class="num">4</span>Work Split</h2>
+  <p>Responds to the RFP §14 requirement “work split including data and EDW tasks”.</p>
+  <div class="callout">
+    <strong>Key concept: coarse-grained business services</strong> — Per RFP INT-14/15/16, the AI agent interacts with the back-end by calling coarse-grained business services (e.g. <code>CheckProductEligibility</code>, <code>RegisterComplaint</code>, <code>TransferToHumanAgent</code>); the integration layer (ESB) orchestrates T24 / CRM and other systems internally. These services are provided by Alinma (provider side) and consumed by us (consumer side), so integration development is a two-sided collaboration.
+  </div>
+
+  <h3>4.1 Workstreams (10)</h3>
+  <div class="tableScroll">
+  <table>
+    <thead><tr><th>ID</th><th>Workstream</th><th>Lead</th></tr></thead>
+    <tbody>
+      <tr><td>WF1</td><td>Project management &amp; governance</td><td>Us + SI</td></tr>
+      <tr><td>WF2</td><td>Solution architecture &amp; design</td><td>Us</td></tr>
+      <tr><td>WF3</td><td>Dialog design &amp; bot build (incl. prompts, KB / RAG, change governance)</td><td>Us + Alinma</td></tr>
+      <tr><td>WF4</td><td>Integration development (ESB / CRM / T24 / Comarch / IVR + auth service)</td><td>Us (consumer) + Alinma (provider)</td></tr>
+      <tr><td>WF5</td><td>Data contracts &amp; EDW tasks</td><td>Us + Alinma EDW team</td></tr>
+      <tr><td>WF6</td><td>Testing (incl. UAT)</td><td>Us + Alinma QA</td></tr>
+      <tr><td>WF7</td><td>Compliance &amp; security</td><td>Us + SI + Alinma</td></tr>
+      <tr><td>WF8</td><td>Deployment &amp; operations (incl. platform &amp; model deployment)</td><td>SI lead + us support</td></tr>
+      <tr><td>WF9</td><td>Training &amp; documentation</td><td>Us</td></tr>
+      <tr><td>WF10</td><td>Hypercare</td><td>Us + SI on-site</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="callout">ASR / TTS / LLM models are platform components deployed together with the platform (WF8). This project does <strong>not</strong> include model training or tuning on client data; models are used as-is at their existing production-grade capability.</div>
+
+  <h3>4.2 Workstream Activity by Phase</h3>
+  <p style="font-size:13px;color:var(--muted)">●main = primary phase &nbsp; ● = active &nbsp; ○ = wind-down</p>
+  <div class="tableScroll">
+  <table>
+    <thead><tr><th>Workstream</th><th class="r">P1</th><th class="r">P2</th><th class="r">P3</th><th class="r">P4</th><th class="r">P5</th><th class="r">P6</th></tr></thead>
+    <tbody>
+      <tr><td>WF1 Project management</td><td class="r">●</td><td class="r">●</td><td class="r">●</td><td class="r">●</td><td class="r">●</td><td class="r">●</td></tr>
+      <tr><td>WF2 Architecture &amp; design</td><td class="r">●</td><td class="r">●main</td><td class="r">●</td><td class="r"></td><td class="r"></td><td class="r">○</td></tr>
+      <tr><td>WF3 Dialog &amp; bot build</td><td class="r">○</td><td class="r">●main</td><td class="r">●</td><td class="r">●</td><td class="r">●main</td><td class="r">○</td></tr>
+      <tr><td>WF4 Integration development</td><td class="r">○</td><td class="r">●</td><td class="r">●main</td><td class="r">●</td><td class="r">●</td><td class="r">○</td></tr>
+      <tr><td>WF5 Data &amp; EDW</td><td class="r">●</td><td class="r">●</td><td class="r">●main</td><td class="r">●</td><td class="r">●</td><td class="r">○</td></tr>
+      <tr><td>WF6 Testing (incl. UAT)</td><td class="r">○</td><td class="r">●</td><td class="r">●</td><td class="r">●main</td><td class="r">●main</td><td class="r">○</td></tr>
+      <tr><td>WF7 Compliance &amp; security</td><td class="r">●</td><td class="r">●</td><td class="r">●</td><td class="r">●</td><td class="r">●main</td><td class="r">○</td></tr>
+      <tr><td>WF8 Deployment &amp; operations</td><td class="r">○</td><td class="r">●</td><td class="r">●main</td><td class="r">●</td><td class="r">●</td><td class="r">●main</td></tr>
+      <tr><td>WF9 Training &amp; documentation</td><td class="r">○</td><td class="r">●</td><td class="r">●</td><td class="r">●</td><td class="r">●main</td><td class="r">●main</td></tr>
+      <tr><td>WF10 Hypercare</td><td class="r"></td><td class="r"></td><td class="r"></td><td class="r">●</td><td class="r">●</td><td class="r">●main</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>4.3 Data &amp; EDW Tasks</h3>
+  <div class="tableScroll">
+  <table>
+    <thead><tr><th>Work package</th><th>Phase</th><th>Lead</th><th>Boundary</th></tr></thead>
+    <tbody>
+      <tr><td>Engage Alinma EDW team, understand current state</td><td>P1</td><td>Us + EDW team</td><td>—</td></tr>
+      <tr><td>Data contract definition (schema, dictionary) + PII masking rules</td><td>P2</td><td>Us + Alinma compliance</td><td>We define contracts</td></tr>
+      <tr><td>Confirm push method (API / Kafka / batch)</td><td>P2 end</td><td>Us + EDW team</td><td>—</td></tr>
+      <tr><td>Push implementation + integration testing</td><td>P3</td><td>Us + EDW team</td><td>We provide push implementation</td></tr>
+      <tr><td>Data quality validation + reporting-layer validation</td><td>P4</td><td>EDW team-driven + us support</td><td>ETL / modeling / reporting belong to Alinma EDW</td></tr>
+      <tr><td>Data contract documentation handover + archival strategy</td><td>P6</td><td>Us</td><td>Long-term archival belongs to Alinma</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:13.5px">Cadence: a bi-weekly meeting with the Alinma EDW team from P1 onward.</p>
+
+  <!-- 5 -->
+  <h2><span class="num">5</span>Three-Party RACI</h2>
+  <p style="font-size:13.5px;color:var(--muted)">R = Responsible / A = Accountable / C = Consulted / I = Informed</p>
+  <div class="callout">
+    <strong>Responsibility design principle:</strong> we take R/A only for what we control. For any workstream that depends on systems / services / content / approvals provided by Alinma, Alinma takes R or A — integration, knowledge content, UAT acceptance, data downstream and compliance approval are all two-sided collaborations, not single-party delivery.
+  </div>
+  <div class="tableScroll">
+  <table>
+    <thead><tr><th>Workstream</th><th class="r">Software Provider</th><th class="r">Local SI</th><th class="r">Alinma Bank</th></tr></thead>
+    <tbody>
+      <tr><td>WF1 Project management</td><td class="r"><strong>R/A</strong> (our side)</td><td class="r">R (SI side)</td><td class="r"><strong>A</strong> (sponsor)</td></tr>
+      <tr><td>WF2 Architecture &amp; design</td><td class="r"><strong>R/A</strong></td><td class="r">C</td><td class="r">C</td></tr>
+      <tr><td>WF3 Dialog &amp; bot build</td><td class="r"><strong>R/A</strong> (platform)</td><td class="r">I</td><td class="r"><strong>R</strong> (scenarios / rules / content / auth input)</td></tr>
+      <tr><td>WF4 Integration development</td><td class="r"><strong>R</strong> (consumer)</td><td class="r">I</td><td class="r"><strong>R/A</strong> (ESB + services provider)</td></tr>
+      <tr><td>WF5 Data &amp; EDW</td><td class="r"><strong>R</strong> (contract + push)</td><td class="r">I</td><td class="r"><strong>R/A</strong> (ETL + modeling + reporting + archival)</td></tr>
+      <tr><td>WF6 Testing (incl. UAT)</td><td class="r"><strong>R/A</strong> (SIT / perf / security)</td><td class="r">C</td><td class="r"><strong>R/A</strong> (UAT execution + sign-off)</td></tr>
+      <tr><td>WF7 Compliance &amp; security</td><td class="r">R (materials)</td><td class="r">R (materials)</td><td class="r"><strong>A</strong> (review &amp; approval)</td></tr>
+      <tr><td>WF8 Deployment &amp; operations (incl. platform &amp; model deploy)</td><td class="r">C (app layer)</td><td class="r"><strong>R/A</strong></td><td class="r">C</td></tr>
+      <tr><td>WF9 Training &amp; documentation</td><td class="r"><strong>R/A</strong></td><td class="r">I</td><td class="r">C (trainees + recipients)</td></tr>
+      <tr><td>WF10 Hypercare</td><td class="r">R (software)</td><td class="r">R (on-site)</td><td class="r">C (operations)</td></tr>
+      <tr><td>Business rules / complaint taxonomy / knowledge content</td><td class="r">C</td><td class="r">I</td><td class="r"><strong>R/A</strong> (business)</td></tr>
+      <tr><td>Full bots (M1/M2 extension, M3 Phase 2)</td><td class="r">C (training + support)</td><td class="r">I</td><td class="r"><strong>R/A</strong> (built on platform)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- 6 -->
+  <h2><span class="num">6</span>Resource Effort (Overview)</h2>
+  <p>For resource scheduling and commercial reference; final figures confirmed during detailed design.</p>
+  <p>Our delivery team covers: Delivery Manager; Solution / Integration Architect; Dialog &amp; Bot Build (incl. KB / RAG); Integration Engineer; Data Engineer; QA / Test Engineer; Compliance &amp; Security Engineer; Training / Documentation Engineer; Hypercare / Ops Engineer.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="lab">Delivery period (5 months)</div><div class="val">≈ 710 person-days (~36 PM)</div></div>
+    <div class="kpi"><div class="lab">Hypercare period</div><div class="val">≈ 115 person-days</div></div>
+    <div class="kpi"><div class="lab">Staffing curve (waterfall)</div><div class="val">P1 ~2.75 → P3 peak ~7.7 → P6 wind-down</div></div>
+  </div>
+  <p style="font-size:13.5px">SI and hardware third-party effort are provided separately. This project does not include model training / tuning on client data — ASR / TTS / LLM are used as-is, with deployment plus a one-time language evaluation only.</p>
+
+  <!-- 7 -->
+  <h2><span class="num">7</span>Client Dependencies</h2>
+
+  <h3>7.1 Pre-Kick-off Prerequisites</h3>
+  <p>Appoint project sponsor; assign business contacts (product / sales / complaints), integration team lead, EDW team lead, compliance liaison, contact-center operations contact, QA / UAT team lead; complete NDA; visa support letters for overseas staff (if on-site survey needed); data-center physical access authorization; lock project budget and headcount; open three-party collaboration channels.</p>
+
+  <h3>7.2 Key Dependencies (by latest-needed date)</h3>
+  <div class="tableScroll">
+  <table>
+    <thead><tr><th>Key dependency</th><th>Latest by</th></tr></thead>
+    <tbody>
+      <tr><td>Compliance liaison in place; overseas-team access policy confirmed</td><td>P1 start (W1)</td></tr>
+      <tr><td>Cadence of compliance / security / architecture reviews; real call recording samples (Saudi dialect + annotation)</td><td>P1 mid (W2)</td></tr>
+      <tr><td>ESB product + service templates &amp; SDK; coarse-grained service list &amp; contracts; CRM/T24/Comarch data samples; current ID&amp;V capability</td><td>P1 end (W4)</td></tr>
+      <tr><td>Complaint taxonomy + mandatory-human categories; sales journey business processes</td><td>P2 mid (W6)</td></tr>
+      <tr><td>Shared logging / security / error-handling service contracts; CRM/T24/Comarch APIs + test environments; eligibility rules; transfer rules; IVR/SIP integration spec</td><td>P2 end (W8)</td></tr>
+      <tr><td>Knowledge content (phase 1 list)</td><td>P3 start (W9)</td></tr>
+      <tr><td>Data processing agreement + training-data usage authorization</td><td>P3 mid (W11)</td></tr>
+      <tr><td>UAT case inputs + business sign-off party</td><td>P3 end (W14)</td></tr>
+      <tr><td>Human AHT baseline (for AI handling-time comparison)</td><td>P4 start (W15)</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- 8 -->
+  <h2><span class="num">8</span>Key Assumptions</h2>
+  <p>The plan is premised on the following. If any does not hold, a change-control process is triggered for re-assessment.</p>
+  <h3>Scope boundary</h3>
+  <ul>
+    <li>Full bots for M1 / M2 (all product lines) and M3 Phase 2 are built by Alinma on our platform (see 2.3).</li>
+    <li>The client already has its own outbound dialing + omni-channel marketing system (presumed to include Comarch); we integrate, not replace.</li>
+    <li>Business rules (eligibility / transfer / complaint taxonomy / mandatory-human) and knowledge content are provided by the Alinma business unit.</li>
+    <li>Alinma’s existing IVR / contact center / dialer can be integrated (no replacement / re-build; SIP-level integration only).</li>
+    <li>Multi-step business orchestration is handled by Alinma’s existing orchestration capability or integration layer; AgentStudio handles dialog-flow orchestration only.</li>
+    <li>EDW-side ETL / modeling / reporting / archival are handled by the Alinma EDW team; we provide data contracts and push.</li>
+    <li>Hardware bill of materials and procurement are provided by the local SI.</li>
+  </ul>
+  <h3>Client readiness</h3>
+  <ul>
+    <li>Alinma already has an ESB + coarse-grained business services + shared logging / security / error-handling services.</li>
+    <li>Alinma already has IAM/SSO (OAuth2/OIDC), KMS, SIEM, APM and other shared infrastructure.</li>
+    <li>Alinma provides real call samples (Saudi dialect, annotated) for language-capability evaluation and demonstration (not for model training).</li>
+    <li>Alinma has approved internal budget and headcount for the project.</li>
+  </ul>
+  <h3>Time &amp; environment</h3>
+  <ul>
+    <li>Actual project start date ≤ 01 Sep 2026 (to avoid Ramadan 2027).</li>
+    <li>Development environment uses remote access from the overseas team to the in-KSA development environment (to be aligned with the Bank’s compliance).</li>
+    <li>ASR / TTS / LLM are used as-is at production-grade capability; this project includes no model training or tuning on client data. Language capability is evaluated on actual performance, with acceptance criteria agreed jointly at test time against global benchmarks (per RFP §12).</li>
+  </ul>
+
+  <!-- 9 -->
+  <h2><span class="num">9</span>Training, Hypercare &amp; Documentation Handover</h2>
+
+  <h3>9.1 Training Plan (4 audiences)</h3>
+  <p>All training completed in P5.</p>
+  <div class="tableScroll">
+  <table>
+    <thead><tr><th>Audience</th><th>Content</th><th class="r">Duration</th></tr></thead>
+    <tbody>
+      <tr><td>Agent administrators (bot-build lead)</td><td>Use AgentStudio to build dialog flows, configure rules, manage prompts, knowledge base and change governance</td><td class="r">3 days</td></tr>
+      <tr><td>Business supervisors</td><td>Dashboards, AI performance &amp; quality monitoring, transfer-rate analysis, VOC, knowledge-content maintenance</td><td class="r">1.5 days</td></tr>
+      <tr><td>QA team</td><td>Conversation audit, dialog-quality scoring, bad-case feedback</td><td class="r">1.5 days</td></tr>
+      <tr><td>Technical support</td><td>Transfer-receipt process, context usage, incident escalation paths</td><td class="r">1 day</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Training materials are bilingual (English primary, Arabic secondary).</p>
+
+  <h3>9.2 Hypercare</h3>
+  <p>After go-live we provide an extended support period including on-site / remote support, defect fixes, and support while the client extends bots on the platform. The exact duration, staffing model and response levels are determined at the contract stage. Hypercare is followed by the standard managed-service period.</p>
+
+  <h3>9.3 Documentation Handover</h3>
+  <p>Delivered in full at the end of P6: architecture documents (logical/physical/deployment views, deployment diagrams, sequence diagrams, data-flow diagrams, ports &amp; protocol matrix), API documentation, administrator guide (incl. “build agents on the platform” operating manual), operations runbook, operational-metrics description, data-contract documentation, compliance &amp; security documentation, training materials, knowledge-transfer meeting minutes. Documents are bilingual (English primary, Arabic secondary).</p>
+
+  <!-- 10 -->
+  <h2><span class="num">10</span>Next Steps</h2>
+  <ol>
+    <li><strong>Detailed discovery</strong>: at implementation start, conduct discovery to convert the assumptions in this plan into facts (integration current state, business rules, ID&amp;V capability, data &amp; compliance requirements, etc.).</li>
+    <li><strong>Kick-off</strong>: hold a three-party kick-off within 1–2 weeks of signing — governance structure, start-date lock, prerequisite confirmation, review-cadence alignment, §2.3 extension-model discussion.</li>
+    <li><strong>Three-party alignment</strong>: weekly three-party meeting, weekly client-readiness check, monthly steering committee, bi-weekly EDW team meeting.</li>
+  </ol>
+
+  <!-- Internal appendix -->
+  <div class="internal">
+    <span class="tag">INTERNAL — REMOVE BEFORE CLIENT DELIVERY</span>
+    <h2 style="border-color:var(--warn);color:var(--warn)"><span class="num" style="background:var(--warn)">A</span>Resource Effort — Phase Detail</h2>
+    <p style="font-size:13.5px">1 person-month ≈ 20 person-days. <strong>Hypercare assumption</strong>: HC period estimated at 8 weeks, with 2 Hypercare / Ops engineers full-time plus part-time support from key roles; actual duration per contract.</p>
+    <p style="font-size:13.5px"><strong>Waterfall view</strong>: downstream execution roles do not engage before their phase, or only key roles engage early (“—” / “0” means no effort in that phase).</p>
+
+    <h3>A.1 Effort matrix (person-days)</h3>
+    <div class="tableScroll">
+    <table>
+      <thead><tr>
+        <th>Role</th>
+        <th class="r"><span class="ph">P1<small>Kick-off + Discovery</small></span></th>
+        <th class="r"><span class="ph">P2<small>Detailed Design</small></span></th>
+        <th class="r"><span class="ph">P3<small>Infra + Deploy + Integration</small></span></th>
+        <th class="r"><span class="ph">P4<small>Testing + UAT Prep</small></span></th>
+        <th class="r"><span class="ph">P5<small>UAT Bot + Acceptance + Training</small></span></th>
+        <th class="r"><span class="ph">P6<small>Go-live + Hypercare</small></span></th>
+        <th class="r"><span class="ph">HC<small>Hypercare 8 wks</small></span></th>
+        <th class="r">Total</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Delivery Manager</td><td class="r">15</td><td class="r">15</td><td class="r">30</td><td class="r">15</td><td class="r">15</td><td class="r">10</td><td class="r">10</td><td class="r"><strong>110</strong></td></tr>
+        <tr><td>Solution / Integration Architect</td><td class="r">20</td><td class="r">20</td><td class="r">15</td><td class="r">—</td><td class="r">5</td><td class="r">—</td><td class="r">—</td><td class="r"><strong>60</strong></td></tr>
+        <tr><td>Dialog / Bot Build (incl. KB RAG)</td><td class="r">5</td><td class="r">25</td><td class="r">40</td><td class="r">10</td><td class="r">20</td><td class="r">10</td><td class="r">10</td><td class="r"><strong>120</strong></td></tr>
+        <tr><td>Integration Engineer (×3)</td><td class="r">—</td><td class="r">10</td><td class="r">90</td><td class="r">45</td><td class="r">25</td><td class="r">10</td><td class="r">10</td><td class="r"><strong>190</strong></td></tr>
+        <tr><td>Data Engineer</td><td class="r">5</td><td class="r">10</td><td class="r">15</td><td class="r">10</td><td class="r">5</td><td class="r">5</td><td class="r">—</td><td class="r"><strong>50</strong></td></tr>
+        <tr><td>QA / Test Engineer (×2)</td><td class="r">—</td><td class="r">5</td><td class="r">20</td><td class="r">20</td><td class="r">25</td><td class="r">10</td><td class="r">—</td><td class="r"><strong>80</strong></td></tr>
+        <tr><td>Compliance &amp; Security Engineer</td><td class="r">10</td><td class="r">15</td><td class="r">15</td><td class="r">15</td><td class="r">25</td><td class="r">10</td><td class="r">5</td><td class="r"><strong>95</strong></td></tr>
+        <tr><td>Training / Documentation Engineer</td><td class="r">—</td><td class="r">—</td><td class="r">5</td><td class="r">10</td><td class="r">15</td><td class="r">10</td><td class="r">—</td><td class="r"><strong>40</strong></td></tr>
+        <tr><td>Hypercare / Ops Engineer (×2)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">80</td><td class="r"><strong>80</strong></td></tr>
+        <tr class="tot"><td>Phase total</td><td class="r">55</td><td class="r">100</td><td class="r">230</td><td class="r">125</td><td class="r">135</td><td class="r">65</td><td class="r">115</td><td class="r">825</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:13.5px">Total ≈ <strong>825 person-days</strong> (delivery 710 + Hypercare 115), ≈ 41 person-months. No model engineer effort (no model training/tuning; models used as-is). SI and hardware third-party effort provided separately.</p>
+
+    <h3>A.2 FTE utilization (derived = person-days ÷ phase working-days)</h3>
+    <div class="tableScroll">
+    <table>
+      <thead><tr>
+        <th>Role</th>
+        <th class="r"><span class="ph">P1<small>20 wd</small></span></th>
+        <th class="r"><span class="ph">P2<small>20 wd</small></span></th>
+        <th class="r"><span class="ph">P3<small>30 wd</small></span></th>
+        <th class="r"><span class="ph">P4<small>15 wd</small></span></th>
+        <th class="r"><span class="ph">P5<small>15 wd</small></span></th>
+        <th class="r"><span class="ph">P6<small>10 wd</small></span></th>
+        <th class="r"><span class="ph">HC<small>40 wd</small></span></th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Delivery Manager</td><td class="r">0.75</td><td class="r">0.75</td><td class="r">1.0</td><td class="r">1.0</td><td class="r">1.0</td><td class="r">1.0</td><td class="r">0.25</td></tr>
+        <tr><td>Architect</td><td class="r">1.0</td><td class="r">1.0</td><td class="r">0.5</td><td class="r">—</td><td class="r">0.33</td><td class="r">—</td><td class="r">—</td></tr>
+        <tr><td>Dialog / Bot Build</td><td class="r">0.25</td><td class="r">1.25</td><td class="r">1.33</td><td class="r">0.67</td><td class="r">1.33</td><td class="r">1.0</td><td class="r">0.25</td></tr>
+        <tr><td>Integration (×3)</td><td class="r">—</td><td class="r">0.5</td><td class="r">3.0</td><td class="r">3.0</td><td class="r">1.67</td><td class="r">1.0</td><td class="r">0.25</td></tr>
+        <tr><td>Data Engineer</td><td class="r">0.25</td><td class="r">0.5</td><td class="r">0.5</td><td class="r">0.67</td><td class="r">0.33</td><td class="r">0.5</td><td class="r">—</td></tr>
+        <tr><td>QA / Test (×2)</td><td class="r">—</td><td class="r">0.25</td><td class="r">0.67</td><td class="r">1.33</td><td class="r">1.67</td><td class="r">1.0</td><td class="r">—</td></tr>
+        <tr><td>Compliance &amp; Security</td><td class="r">0.5</td><td class="r">0.75</td><td class="r">0.5</td><td class="r">1.0</td><td class="r">1.67</td><td class="r">1.0</td><td class="r">0.125</td></tr>
+        <tr><td>Training / Documentation</td><td class="r">—</td><td class="r">—</td><td class="r">0.17</td><td class="r">0.67</td><td class="r">1.0</td><td class="r">1.0</td><td class="r">—</td></tr>
+        <tr><td>Hypercare / Ops (×2)</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">2.0</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>A.3 Reasonableness cross-checks</h3>
+    <ol>
+      <li><strong>Waterfall staffing curve</strong>: P1 ~2.75 people (PM + architect + light discovery), P2 ~5, P3 peak ~7.7 (build phase), P4–P5 ~8–9 (test/UAT), P6 ~6.5 — staff phase in and out, no “full team throughout” padding.</li>
+      <li><strong>Integration 190 person-days (23%, single largest)</strong> — reflects deep banking integration (ESB + CRM + T24 + Comarch + IVR + auth, 6 systems, under INT constraints); no engagement in P1, only the integration lead joins contracts in P2 (0.5 FTE), full load in P3–P4 (3.0 FTE), defect-fix in P5–P6.</li>
+      <li><strong>P3 staffing peak 230 person-days (28%)</strong> — consistent with “infrastructure + platform deployment + integration” being the critical path.</li>
+      <li><strong>Team size</strong>: P3 peak ~7–8 concurrent, delivery-period average ~6.5 (710 ÷ 110 working-days) — a lean, reasonable size for a 5-month, 3-module, high-compliance banking project.</li>
+      <li><strong>Testing &amp; compliance back-loaded</strong>: QA largely absent in P1–P2, rising to 1.3–1.7 FTE in P4–P5 (SIT/perf/UAT; no repeated WER testing since no model training); compliance rises to 1.67 FTE in P5 (review materials + hardening).</li>
+      <li><strong>Dialog / Bot Build 120 person-days (15%)</strong> — combines dialog design + KB + RAG + change governance (WF3) and the build of 3 UAT Bots (coverage maps to RFP §12 UAT, see 2.2).</li>
+    </ol>
+    <p style="font-size:13.5px">This is a v1 top-down estimate (±15%). After award it is re-estimated bottom-up against a detailed WBS, incorporating team productivity factors and actual client readiness (e.g. whether coarse-grained services must be newly built, which materially affects integration effort).</p>
+  </div>
+
+  <footer>
+    AI-First Contact Center &amp; Telesales Platform — Delivery Plan · v1 · 19 May 2026 · Alinma Bank RFP #743305<br>
+    Other mandatory deliverables (compliance, architecture, hardware, detailed requirement response, commercials, references) are submitted as separate documents.
+  </footer>
+
+</div>
+</body>
+</html>
