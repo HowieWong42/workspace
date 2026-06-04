@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a0e14">
+<title>Panya · Pre-Sales Interview · Pocket Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0e14; --ink-2:#141b27; --ink-3:#1b2433;
+    --paper:#f4f1ea; --dim:#b8b2a4; --dim-2:#8b8576;
+    --gold:#d4ac34; --gold-soft:#e6cf78;
+    --teal:#3bb3a2; --teal-dim:#236b61;
+    --line:rgba(244,241,234,0.12); --line-2:rgba(244,241,234,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;overflow:hidden;overscroll-behavior:none}
+  body{
+    background:var(--ink); color:var(--paper);
+    font-family:'Newsreader',Georgia,serif;
+    -webkit-font-smoothing:antialiased;
+    position:fixed; inset:0;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(ellipse 130% 50% at 50% -5%, rgba(212,172,52,0.13), transparent 55%),
+      radial-gradient(ellipse 120% 45% at 50% 105%, rgba(59,179,162,0.10), transparent 55%);
+  }
+
+  /* ───── top bar ───── */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:30;
+    padding:calc(env(safe-area-inset-top) + 12px) 18px 12px;
+    background:linear-gradient(180deg, rgba(10,14,20,0.96), rgba(10,14,20,0.7) 70%, transparent);
+    backdrop-filter:blur(8px);
+  }
+  .tb-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .tb-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-soft)}
+  .tb-count{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--dim);font-variant-numeric:tabular-nums}
+  .dots{display:flex;gap:5px;margin-top:10px}
+  .dot{height:3px;flex:1;background:var(--line);border-radius:2px;transition:background .35s,transform .35s;transform-origin:left}
+  .dot.done{background:var(--teal-dim)}
+  .dot.active{background:linear-gradient(90deg,var(--gold),var(--teal))}
+
+  /* ───── deck ───── */
+  .deck{
+    position:absolute;inset:0;z-index:10;
+    display:flex;
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .deck::-webkit-scrollbar{display:none}
+  .card{
+    flex:0 0 100%;width:100%;height:100%;
+    scroll-snap-align:center;scroll-snap-stop:always;
+    overflow-y:auto;overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+    padding:calc(env(safe-area-inset-top) + 76px) 22px calc(env(safe-area-inset-bottom) + 92px);
+    scrollbar-width:none;
+  }
+  .card::-webkit-scrollbar{display:none}
+  .card-inner{min-height:100%;display:flex;flex-direction:column}
+
+  /* card chrome */
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:9px}
+  .eyebrow .pip{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+  .eyebrow .time{margin-left:auto;color:var(--teal);border:1px solid var(--teal-dim);border-radius:20px;padding:3px 10px;letter-spacing:0.1em}
+
+  h1{font-family:'Fraunces',serif;font-weight:400;font-size:34px;line-height:1.08;letter-spacing:-0.02em;margin-bottom:18px}
+  h1 em{font-style:italic;color:var(--gold)}
+  h2{font-family:'Fraunces',serif;font-weight:500;font-size:25px;line-height:1.15;letter-spacing:-0.01em;margin-bottom:14px}
+  h2 em{font-style:italic;color:var(--teal)}
+  .lede{font-size:18px;line-height:1.6;color:var(--dim);margin-bottom:8px}
+  .lede b{color:var(--paper);font-weight:500}
+
+  /* hero card special */
+  .hero .card-inner{justify-content:center}
+  .hero .sub{font-size:17px;line-height:1.55;color:var(--dim);margin:6px 0 26px}
+  .hero .sub b{color:var(--paper);font-weight:500}
+  .hero-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .hchip{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.06em;padding:6px 12px;border:1px solid var(--line-2);border-radius:30px;color:var(--dim)}
+  .hchip.hot{border-color:var(--gold);color:var(--gold-soft)}
+
+  /* the spoken line */
+  .say{
+    font-family:'Newsreader',serif;font-size:20px;line-height:1.62;color:var(--paper);
+    margin:4px 0 6px;
+  }
+  .say p{margin-bottom:13px}
+  .say p:last-child{margin-bottom:0}
+  .say .hi{color:var(--gold-soft);font-style:italic}
+  .say em{font-style:italic;color:var(--teal)}
+
+  /* director note — collapsible */
+  .note{
+    margin-top:18px;border:1px dashed var(--teal-dim);border-radius:14px;
+    background:rgba(59,179,162,0.06);overflow:hidden;
+  }
+  .note-h{
+    display:flex;align-items:center;gap:9px;padding:14px 16px;cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-soft);user-select:none;
+  }
+  .note-h .arr{margin-left:auto;color:var(--teal);transition:transform .35s;font-size:13px}
+  .note.open .note-h .arr{transform:rotate(90deg)}
+  .note-b{max-height:0;overflow:hidden;transition:max-height .45s ease}
+  .note.open .note-b{max-height:600px}
+  .note-b p{padding:0 16px 16px;font-size:15.5px;line-height:1.68;color:var(--dim)}
+  .note-b p b{color:var(--teal);font-weight:500}
+
+  /* pillar list */
+  .plist{display:flex;flex-direction:column;gap:13px;margin-top:6px}
+  .pill{padding:18px 18px 18px 20px;background:var(--ink-2);border:1px solid var(--line);border-radius:15px;position:relative;overflow:hidden}
+  .pill::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--gold),var(--teal))}
+  .pill .pn{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;color:var(--gold);margin-bottom:7px}
+  .pill h3{font-family:'Fraunces',serif;font-weight:500;font-size:20px;line-height:1.18;margin-bottom:8px}
+  .pill p{font-size:15.5px;line-height:1.55;color:var(--dim)}
+  .pill p b{color:var(--paper);font-weight:500}
+
+  /* framework rows */
+  .fw{display:flex;flex-direction:column;margin-top:6px}
+  .fwr{display:flex;gap:15px;padding:17px 0;border-bottom:1px solid var(--line)}
+  .fwr:last-child{border-bottom:none}
+  .fwn{font-family:'Fraunces',serif;font-size:30px;font-weight:400;color:var(--gold);line-height:1;flex-shrink:0;width:30px}
+  .fwr h4{font-family:'Fraunces',serif;font-weight:500;font-size:18px;margin-bottom:4px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+  .star{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.05em}
+  .fwr .jd{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:0.03em;margin-bottom:6px;opacity:.9}
+  .fwr p{font-size:14.5px;line-height:1.5;color:var(--dim)}
+
+  /* QA cards */
+  .qa{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+  .qc{background:var(--ink-2);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .qc .qh{padding:16px 18px;font-family:'Fraunces',serif;font-size:16.5px;line-height:1.3;color:var(--gold-soft);display:flex;gap:12px;align-items:flex-start;cursor:pointer;user-select:none}
+  .qc .qh .arr{margin-left:auto;font-family:'IBM Plex Mono',monospace;color:var(--teal);transition:transform .35s;flex-shrink:0;font-size:15px;line-height:1.4}
+  .qc.open .qh .arr{transform:rotate(45deg)}
+  .qc .qb{max-height:0;overflow:hidden;transition:max-height .5s ease}
+  .qc.open .qb{max-height:700px}
+  .qc .qb-in{padding:0 18px 18px;font-size:15.5px;line-height:1.62;color:var(--dim)}
+  .qc .qb-in .hi{color:var(--paper);font-weight:500}
+  .qc .qb-in em{font-style:italic;color:var(--teal)}
+
+  /* checklist */
+  .chk{display:flex;flex-direction:column;gap:11px;margin-top:6px}
+  .chki{display:flex;gap:13px;align-items:flex-start;padding:15px 16px;background:var(--ink-2);border:1px solid var(--line);border-radius:13px;cursor:pointer;transition:border-color .3s}
+  .chki .bx{flex-shrink:0;width:22px;height:22px;border:1.5px solid var(--dim-2);border-radius:7px;margin-top:1px;position:relative;transition:all .3s}
+  .chki .bx::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:14px;font-weight:bold;opacity:0;transition:opacity .25s}
+  .chki.done{border-color:var(--gold)}
+  .chki.done .bx{background:var(--gold);border-color:var(--gold)}
+  .chki.done .bx::after{opacity:1}
+  .chki .ct b{font-size:16px;color:var(--paper);font-weight:500;display:block;margin-bottom:3px;transition:opacity .3s}
+  .chki.done .ct b{opacity:.55;text-decoration:line-through;text-decoration-color:var(--dim-2)}
+  .chki .ct span{font-size:14px;line-height:1.5;color:var(--dim)}
+
+  /* quote card */
+  .quote .card-inner{justify-content:center;text-align:left}
+  .quote .mark{font-family:'Fraunces',serif;font-size:80px;color:var(--gold);line-height:0.5;opacity:.5;margin-bottom:8px}
+  .quote blockquote{font-family:'Fraunces',serif;font-style:italic;font-weight:400;font-size:26px;line-height:1.42;color:var(--paper);margin-bottom:24px}
+  .quote .zhq{font-size:15px;line-height:1.7;color:var(--dim);border-left:2px solid var(--teal-dim);padding-left:16px}
+  .quote .zhq b{color:var(--teal)}
+
+  /* closing card */
+  .fin .card-inner{justify-content:center;text-align:center;align-items:center}
+  .fin .sig{font-family:'Fraunces',serif;font-style:italic;font-size:24px;line-height:1.4;color:var(--gold-soft);margin-bottom:20px;max-width:300px}
+  .fin .restart{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;color:var(--paper);background:var(--ink-3);border:1px solid var(--line-2);border-radius:30px;padding:12px 24px;cursor:pointer}
+  .fin .meta{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--dim-2);margin-top:26px}
+
+  /* zh helper block */
+  .zh{font-size:15px;line-height:1.72;color:var(--dim);border-left:2px solid var(--teal-dim);padding-left:15px;margin:16px 0}
+  .zh b{color:var(--teal);font-weight:500}
+  .zh + .zh{margin-top:0}
+
+  /* ───── bottom nav ───── */
+  .nav{
+    position:fixed;left:0;right:0;bottom:0;z-index:30;
+    padding:12px 18px calc(env(safe-area-inset-bottom) + 14px);
+    background:linear-gradient(0deg, rgba(10,14,20,0.97), rgba(10,14,20,0.75) 60%, transparent);
+    backdrop-filter:blur(8px);
+    display:flex;align-items:center;gap:14px;
+  }
+  .nbtn{
+    flex-shrink:0;width:48px;height:48px;border-radius:50%;
+    background:var(--ink-3);border:1px solid var(--line-2);color:var(--paper);
+    font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;
+    transition:opacity .3s,transform .15s;
+  }
+  .nbtn:active{transform:scale(0.92)}
+  .nbtn:disabled{opacity:0.3}
+  .nbtn.next{background:linear-gradient(135deg,var(--gold),var(--teal-dim));border-color:transparent;color:var(--ink);font-weight:bold}
+  .ntitle{flex:1;min-width:0;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--dim);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+  /* swipe hint */
+  .swipe-hint{
+    position:fixed;bottom:calc(env(safe-area-inset-bottom) + 88px);left:50%;transform:translateX(-50%);
+    z-index:25;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:var(--dim-2);
+    display:flex;align-items:center;gap:8px;pointer-events:none;
+    animation:hintbob 2.2s ease-in-out infinite;opacity:0;transition:opacity .5s;
+  }
+  .swipe-hint.show{opacity:1}
+  @keyframes hintbob{0%,100%{transform:translateX(-50%) translateX(0)}50%{transform:translateX(-50%) translateX(7px)}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-row">
+    <span class="tb-label" id="secLabel">Pocket Deck</span>
+    <span class="tb-count"><span id="cur">1</span> / <span id="tot">11</span></span>
+  </div>
+  <div class="dots" id="dots"></div>
+</div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 HERO -->
+  <div class="card hero">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>Interview Playbook</div>
+      <h1>AI is the easy part. Knowing what the <em>client needs</em> — that's the job.</h1>
+      <p class="sub">英文演讲脚本 + 中文导演笔记。左右滑动一张张过,适合在路上排练。<b>每张卡里点开绿框看怎么讲。</b></p>
+      <div class="hero-chips">
+        <span class="hchip hot">~8 min · English</span>
+        <span class="hchip">售前顾问岗</span>
+        <span class="hchip">考察 拆解 + 讲解</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 HOW TO USE -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>00 · 先看这里</div>
+      <h2>这不是知识小抄,<em>是叙事脚本</em>。</h2>
+      <p class="lede">面试官考的是<b>分析拆解</b>和<b>讲解能力</b>,英文顺带验。重点不是懂多少 AI 名词,而是能不能把方案讲清楚、说服客户。</p>
+      <div class="zh"><b>压住一个认知:</b> 这岗是「AI 应用售前顾问」,JD 白纸黑字写 <b>"无需底层算法、模型研发"</b>。它本来就不要你做模型工程——要你听懂业务、设计方案、算效益、讲清楚。每一项都踩在你强项上。你不是扬短,是扬长。</div>
+      <div class="zh">你的三张牌:<b>① 懂客户真业务(尤其 BFSI);② 已动手做过 SME Loan 风控 AI 探索(非零经验);③ 有把项目拆开讲明白的框架。</b></div>
+    </div>
+  </div>
+
+  <!-- 3 PILLARS -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>01 · 人设地基</div>
+      <h2>你站台上,<em>到底是谁?</em></h2>
+      <p class="lede" style="margin-bottom:18px">你是<b>那个能把 AI 翻译成客户买得起、落得了地的方案的人</b>。</p>
+      <div class="plist">
+        <div class="pill">
+          <div class="pn">01 — I speak the client's language</div>
+          <h3>从业务出发,不从名词出发</h3>
+          <p>多年 BFSI 甲方。我坐过客户的位子,懂他们的痛点、KPI、顾虑。售前最大的失败是"方案很炫客户用不上"——我天然<b>从业务反推技术</b>。</p>
+        </div>
+        <div class="pill">
+          <div class="pn">02 — Already on the road</div>
+          <h3>我已经动手用过 AI</h3>
+          <p>做过 <b>Global Bank SME Loan 风控 workflow</b> 探索。不是"听说过",是"已经把 AI 用在真实业务里"——能在应用层快速上手。</p>
+        </div>
+        <div class="pill">
+          <div class="pn">03 — Break it down & sell it</div>
+          <h3>把复杂讲简单</h3>
+          <p>给我一个机会,我能拆成<b>清晰落地路径</b>:场景→方案→架构→效益→风险。技术认可、高管点头——这就是售前核心。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 BEAT 1 -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>Beat 1 · Open<span class="time">~50s</span></div>
+      <div class="say">
+        <p>Thank you. I want to start with a confession, and then a claim.</p>
+        <p>The confession: <span class="hi">I'm not the person here who has built the most AI models.</span> The claim: I might be the one who best understands <span class="hi">why most AI projects fail to land — and how to make sure ours don't.</span></p>
+        <p>They rarely fail on the technology. They fail when the solution doesn't match what the client actually needs. And matching technology to real business need — that's exactly what I've done for years on the BFSI side.</p>
+      </div>
+      <div class="note">
+        <div class="note-h">▷ 怎么讲<span class="arr">›</span></div>
+        <div class="note-b"><p>别道歉式心虚。"confession + claim" 是钩子——坦诚弱点立刻翻盘。说 <b>"why most AI projects fail to land"</b> 时放慢、加重,看着负责人眼睛。这句直接点出售前的核心价值,定全场基调。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 BEAT 2 -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>Beat 2 · How I see AI<span class="time">~110s</span></div>
+      <div class="say">
+        <p>How do I understand AI? My one-line version:</p>
+        <p><span class="hi">An LLM is a brilliant, fast, confident intern who has read everything and remembers nothing about the client.</span></p>
+        <p>Brilliant — it reasons over language like nothing before. Fast — seconds. Confident — and that's the danger: it gives a wrong answer in the same tone as a right one. And it remembers nothing about <em>the client</em>.</p>
+        <p>So the model is never the hard part. It's the intern. The real work is around it: the right <span class="hi">knowledge</span> — RAG; the right <span class="hi">instructions</span> — prompt engineering; the right <span class="hi">tools</span> — integration; the right <span class="hi">guardrails</span> — risk.</p>
+        <p>That's the game in pre-sales: not "look what AI can do," but <span class="hi">"here's how it solves your problem, safely, and the value it returns."</span></p>
+      </div>
+      <div class="note">
+        <div class="note-h">▷ 怎么讲<span class="arr">›</span></div>
+        <div class="note-b"><p>全场最重要的 90 秒。"实习生"比喻是讲解能力的硬证据。说 RAG / 提示词 / 集成 / 风险时<b>用手在空中点四下</b>,制造"我有结构"。最后一句是售前灵魂——重重落下。这四个词正好对应 JD 任职要求里的"应用层技术"。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 BEAT 3 -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>Beat 3 · The pain I know<span class="time">~90s</span></div>
+      <div class="say">
+        <p>Let me make this concrete with something I've actually worked on.</p>
+        <p>I explored an AI-assisted workflow for <span class="hi">SME loan risk control</span> at a global bank. Not production — an exploration. But it taught me what matters most:</p>
+        <p>The hard part was never making the model <em>sound</em> smart. It was the scoping — <span class="hi">where AI genuinely added value, where it didn't, and where it created more risk than it removed.</span> Knowing what <em>not</em> to automate is half the job.</p>
+        <p>That's the pre-sales instinct. My value isn't the flashiest demo. It's saying: <span class="hi">"For this, AI gives clear return. For that, honestly, not yet — let's not waste your budget."</span> That honesty earns trust. I've been on their side of the table.</p>
+      </div>
+      <div class="note">
+        <div class="note-h">▷ 怎么讲<span class="arr">›</span></div>
+        <div class="note-b"><p>"软化零经验"主攻段。大方承认 <b>"an exploration, not production"</b> 反而可信。杀招:把风控里学到的"判断哪里该用 AI"迁移成售前能力,正中 JD"可行性评估、把控风险"。说 "let's not waste your budget" 时带笃定微笑——甲方视角才说得出。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 BEAT 4 -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>Beat 4 · My breakdown<span class="time">~120s</span></div>
+      <div class="say">
+        <p>Now the part you asked me to show — how I break a problem down. Any AI opportunity, I run through five steps:</p>
+        <p>One — <span class="hi">understand the business</span>: the real pain, the KPI behind it. Two — <span class="hi">design the solution</span>: which capability fits, how it plugs in. Three — <span class="hi">map the landing path</span>: phased, pilot to production. Four — <span class="hi">prove the value</span>: cost-benefit in their numbers. Five — <span class="hi">manage the risk</span>: where it goes wrong, answered before they ask.</p>
+        <p>I'm strongest at <span class="hi">one, four, and five</span>. Steps two and three lean technical — that's where I work shoulder-to-shoulder with the delivery and tech team. I bring the "what the client needs," they bring the "how we build it."</p>
+      </div>
+      <div class="note">
+        <div class="note-h">▷ 怎么讲<span class="arr">›</span></div>
+        <div class="note-b"><p>五步直接呼应 JD 职责 1-3——"我研究过这岗"的硬证据。报五条<b>要有节奏,像数拍子</b>。最后一句关键:坦白把偏技术的 2/3 交给技术团队,正中负责人"你 focus 面客、新同学负责技术"的分工设想。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 BEAT 5 -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>Beat 5 · Plan + Close<span class="time">~100s</span></div>
+      <div class="say">
+        <p>How do I get productive fast? Three phases.</p>
+        <p><span class="hi">First 30 days</span> — learn our portfolio and reference cases, shadow real client conversations. My BFSI background means I'm not learning the client side from scratch.</p>
+        <p><span class="hi">Days 30–60</span> — learn AI-native, contribute AI-native. I use these tools daily to draft docs, build value models, pressure-test proposals. I co-own a real opportunity and start carrying the client-facing explanation.</p>
+        <p><span class="hi">Days 60–90</span> — lead from the front. Take point on an engagement end to end, measured by a proposal that moves forward.</p>
+        <p>To close: you don't need me to be the deepest AI engineer — <span class="hi">this role doesn't either.</span> You need someone who understands the client, shapes AI into something they'll buy, and learns at the speed this field moves. That's the person I am — and the person I'm becoming faster every week. Thank you.</p>
+      </div>
+      <div class="note">
+        <div class="note-h">▷ 怎么讲<span class="arr">›</span></div>
+        <div class="note-b"><p>计划要"可执行"不空谈。<b>"learn AI-native, contribute AI-native"</b> 是 AI-Native 人设点睛句,重读。"this role doesn't either" 巧妙呼应 JD"无需底层算法",暗示你读懂岗位本质。首尾呼应 confession/claim。说完——停,微笑,不补话。</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 FRAMEWORK -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>03 · 五步框架速查</div>
+      <h2>逐条对上 <em>JD</em>。</h2>
+      <p class="lede" style="margin-bottom:14px">追问"具体怎么做方案"时调出来。★ 是你的主场。</p>
+      <div class="fw">
+        <div class="fwr"><div class="fwn">1</div><div><h4>Understand the Business <span class="star">★ 主场</span></h4><div class="jd">JD #2 · 梳理痛点与数字化需求</div><p>搞清真痛点、背后 KPI、客户眼中的"成功"。甲方视角值钱。</p></div></div>
+        <div class="fwr"><div class="fwn">2</div><div><h4>Design the Solution</h4><div class="jd">JD #1 · 设计可落地应用方案</div><p>选对能力(文本/语音/视觉/多模态),想清集成。联动技术团队。</p></div></div>
+        <div class="fwr"><div class="fwn">3</div><div><h4>Map the Landing Path</h4><div class="jd">JD #2+#4 · 落地路径 · 跟进实施</div><p>试点到生产的分阶段路线,让客户不必赌一把。你定节奏和验收。</p></div></div>
+        <div class="fwr"><div class="fwn">4</div><div><h4>Prove the Value <span class="star">★ 主场</span></h4><div class="jd">JD #2 · 效益分析</div><p>用客户的数字算成本-收益。说服高管买单的关键,你懂商业语言。</p></div></div>
+        <div class="fwr"><div class="fwn">5</div><div><h4>Manage the Risk <span class="star">★ 主场</span></h4><div class="jd">JD #3 · 可行性 · 把控风险</div><p>哪里会出问题、客户问之前备好答案。你做过风控,天然直觉。</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 10 QA -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>04 · 追问应答</div>
+      <h2>他大概会<em>问这些</em>。</h2>
+      <p class="lede" style="margin-bottom:14px">点开看思路。原则:不装懂、往你主场引、用比喻兜底。</p>
+      <div class="qa">
+        <div class="qc"><div class="qh">"你缺 AI 经验,怎么信你跟得上?"<span class="arr">+</span></div><div class="qb"><div class="qb-in"><span class="hi">不慌、不过度承诺。</span> "Two reasons. I've already started — the SME loan exploration wasn't theory, I built it. And the expensive gap here isn't AI engineering, which the job doesn't require — it's understanding the client's business, which I already have. I'd rather be the consultant who knows the client and picks up the tooling, than the reverse."</div></div></div>
+        <div class="qc"><div class="qh">"客户问:为什么用 RAG 不直接微调?"<span class="arr">+</span></div><div class="qb"><div class="qb-in"><span class="hi">考你能否讲给客户听,用实习生比喻。</span> "Fine-tuning changes how the intern <em>thinks</em> — expensive, slow, risky when policies change. RAG changes what it can <em>look up</em> — we feed it your current docs at question time. For most enterprise cases RAG lands faster, costs less, stays auditable — you trace exactly which document an answer came from." 讲清比讲全重要。</div></div></div>
+        <div class="qc"><div class="qh">"给新客户做方案,你怎么 scope?"<span class="arr">+</span></div><div class="qb"><div class="qb-in"><span class="hi">送分题——用五步框架。</span> "First, dig into their real pain and KPI — not the AI they think they want. Second, match capability and integration. Third, a phased path. Fourth, the value case in their numbers. And throughout, honest about risk — including where AI isn't the answer yet. That last part earns trust and closes deals." 报五步要有节奏。</div></div></div>
+        <div class="qc"><div class="qh">"另一新同学做技术,你俩怎么分工?"<span class="arr">+</span></div><div class="qb"><div class="qb-in"><span class="hi">负责人的真实关切。</span> "Cleanly. I own the client-facing layer — business, value case, explaining the solution, stakeholder alignment. They own the technical depth — architecture, integration, build. The overlap is the fun part: I bring 'what the client needs and why', they bring 'how it works', I translate it into something they buy." 答好=告诉他你懂团队结构。</div></div></div>
+        <div class="qc"><div class="qh">"你实际用过哪些 AI 工具?"<span class="arr">+</span></div><div class="qb"><div class="qb-in"><span class="hi">诚实 + AI-Native。</span> 只说真用过的(Claude/ChatGPT),别编没碰过的工具。"I use LLM tools daily — drafting, structuring proposals, learning faster. I understand the application-layer pieces — prompt engineering, RAG, vector databases — and I'm actively going deeper. I'd rather tell you honestly where I am than oversell it." 诚实本身就是顾问看重的品质。</div></div></div>
+        <div class="qc"><div class="qh">"卖 AI 方案最难的是什么?"<span class="arr">+</span></div><div class="qb"><div class="qb-in"><span class="hi">展示你懂售前本质。</span> "Managing expectations. Clients expect magic or trust nothing. My job is the realistic middle — show what AI genuinely does for <em>their</em> case, be upfront about limits, back it with a value case they believe. Deals that stick aren't won on the best demo — on the most honest, well-scoped plan." 答好=天生做售前的料。</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11 QUOTE -->
+  <div class="card quote">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>记不住别的,记这句</div>
+      <div class="mark">"</div>
+      <blockquote>You don't need me to be the deepest AI engineer — this role doesn't either. You need someone who understands the client, can shape AI into something they'll actually buy, and learns at the speed this field moves.</blockquote>
+      <div class="zhq"><b>整场的灵魂。</b> 把"零 AI 经验"翻转成"我恰好是你需要的人"。对着镜子练到能脱口而出、带笃定微笑说出来。</div>
+    </div>
+  </div>
+
+  <!-- 12 CHECKLIST -->
+  <div class="card">
+    <div class="card-inner">
+      <div class="eyebrow"><span class="pip"></span>06 · 今晚清单</div>
+      <h2>明天之前,<em>做这几件</em>。</h2>
+      <p class="lede" style="margin-bottom:16px;font-size:15px">点一下打勾。</p>
+      <div class="chk">
+        <div class="chki"><div class="bx"></div><div class="ct"><b>SME Loan 那段练熟</b><span>全场最有说服力的真实证据。准备好被追问 2-3 层:想解决什么、AI 做了什么、学到什么。</span></div></div>
+        <div class="chki"><div class="bx"></div><div class="ct"><b>大声计时排练两遍</b><span>默念和出声完全两回事。掐表确认 8-9 分钟。第二遍录下来回放。</span></div></div>
+        <div class="chki"><div class="bx"></div><div class="ct"><b>背熟开场钩子 + 收尾金句</b><span>"confession + claim" 和 "you don't need me to be the deepest AI engineer..." 首尾必须脱稿、自信。</span></div></div>
+        <div class="chki"><div class="bx"></div><div class="ct"><b>"实习生"比喻用自己的话</b><span>别背我的句子——理解它,即兴讲出来才证明你真懂。</span></div></div>
+        <div class="chki"><div class="bx"></div><div class="ct"><b>练好对技术追问说"我不知道,但会这样学"</b><span>不装懂是你的护城河,反而契合甲方/顾问气质。</span></div></div>
+        <div class="chki"><div class="bx"></div><div class="ct"><b>少说口头禅</b><span>少 "you know" / "like"。慢一点、留白多一点,更笃定。母语优势别浪费。</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13 FIN -->
+  <div class="card fin">
+    <div class="card-inner">
+      <div class="eyebrow" style="justify-content:center"><span class="pip"></span>That's the deck</div>
+      <div class="sig">Slow down. You know this floor better than anyone in that room.</div>
+      <button class="restart" id="restart">↺ 从头再过一遍</button>
+      <div class="meta">PANYA · 售前顾问 · 内部转岗 · GOOD LUCK ⟡</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="swipe-hint" id="hint">SWIPE →</div>
+
+<div class="nav">
+  <button class="nbtn prev" id="prev" aria-label="previous">‹</button>
+  <div class="ntitle" id="navTitle">向右滑动开始</div>
+  <button class="nbtn next" id="next" aria-label="next">›</button>
+</div>
+
+<script>
+  const deck=document.getElementById('deck');
+  const cards=[...deck.children];
+  const N=cards.length;
+  const dotsWrap=document.getElementById('dots');
+  const curEl=document.getElementById('cur');
+  const totEl=document.getElementById('tot');
+  const navTitle=document.getElementById('navTitle');
+  const secLabel=document.getElementById('secLabel');
+  const prevBtn=document.getElementById('prev');
+  const nextBtn=document.getElementById('next');
+  const hint=document.getElementById('hint');
+
+  const titles=["开场封面","使用说明","人设地基","Beat 1 · Open","Beat 2 · AI 理解","Beat 3 · 风控经验","Beat 4 · 五步拆解","Beat 5 · 计划收尾","框架速查","追问应答","灵魂金句","今晚清单","结束"];
+  const labels=["Pocket Deck","00 · 说明","01 · 人设","Beat 1","Beat 2","Beat 3","Beat 4","Beat 5","03 · 框架","04 · Q&A","金句","06 · 清单","Done"];
+
+  totEl.textContent=N;
+  cards.forEach((_,i)=>{const d=document.createElement('div');d.className='dot';dotsWrap.appendChild(d);});
+  const dots=[...dotsWrap.children];
+
+  let idx=0;
+  function render(){
+    curEl.textContent=idx+1;
+    navTitle.textContent=titles[idx]||"";
+    secLabel.textContent=labels[idx]||"Pocket Deck";
+    dots.forEach((d,i)=>{d.className='dot'+(i<idx?' done':i===idx?' active':'');});
+    prevBtn.disabled=idx===0;
+    nextBtn.textContent=idx===N-1?'✓':'›';
+    hint.classList.toggle('show', idx===0);
+  }
+  function go(i){
+    idx=Math.max(0,Math.min(N-1,i));
+    cards[idx].scrollIntoView({behavior:'smooth',inline:'center'});
+    cards[idx].scrollTop=0;
+    render();
+  }
+  prevBtn.addEventListener('click',()=>go(idx-1));
+  nextBtn.addEventListener('click',()=>{ if(idx<N-1) go(idx+1); });
+
+  // sync idx on manual swipe
+  let raf;
+  deck.addEventListener('scroll',()=>{
+    cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(()=>{
+      const i=Math.round(deck.scrollLeft/deck.clientWidth);
+      if(i!==idx){idx=i;render();}
+    });
+  },{passive:true});
+
+  // collapsibles
+  document.querySelectorAll('.note-h').forEach(h=>h.addEventListener('click',e=>{e.stopPropagation();h.parentElement.classList.toggle('open');}));
+  document.querySelectorAll('.qc .qh').forEach(h=>h.addEventListener('click',e=>{e.stopPropagation();h.parentElement.classList.toggle('open');}));
+  document.querySelectorAll('.chki').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('done')));
+  document.getElementById('restart').addEventListener('click',()=>go(0));
+
+  render();
+</script>
+</body>
+</html>
